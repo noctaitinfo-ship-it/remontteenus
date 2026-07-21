@@ -29,10 +29,9 @@ npm test
 
 ## Enne avaldamist kinnitada
 
-- hinnad: 45 €/h, 65 €/h, poolpäev 160 €, kuupakett alates 149 €;
-- lubadused: 15+ aastat kogemust, garantii, väljakutsetasu 0 € ja vastus tööajal tunni jooksul;
+- lubadused: 15+ aastat kogemust, garantii ja vastus tööajal tunni jooksul;
 - ettevõtte juriidiline nimi, registrikood ja käibemaksu käsitlus;
 - privaatsusteate lõplik tekst;
-- päris enne/pärast fotod ja Google'i arvustused, kui need on olemas.
+- päris enne/pärast fotod ja Google'i arvustused saab hiljem lisada, kui need on olemas.
 
 Kuni need punktid on kinnitamata, hoia muudatus eraldi harus või eelvaates ja ära ühenda tootmisharusse.

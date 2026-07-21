@@ -11,3 +11,9 @@
 
 /sitemap.xml
   Cache-Control: public, max-age=3600
+
+/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable

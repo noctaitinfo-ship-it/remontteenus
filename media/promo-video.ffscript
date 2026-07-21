@@ -1,0 +1,25 @@
+[0:v]format=yuv420p,
+drawbox=x=0:y=0:w=1280:h=720:color=#F3F6F9:t=fill,
+drawbox=x=0:y=0:w=1280:h=18:color=#E8600A:t=fill,
+drawbox=x='mod(t*190\,1540)-260':y=702:w=260:h=18:color=#1F4E79:t=fill[background];
+[1:v]scale=250:250[phone];
+[2:v]scale=500:260[van];
+[3:v]scale=250:250[done];
+[background][phone]overlay=x=900:y='225+8*sin(t*2)':enable='between(t\,0\,3.9)'[scene1];
+[scene1][van]overlay=x='if(lt(t\,5.8)\,-520+(t-4)*720\,730)':y=275:enable='between(t\,4\,7.9)'[scene2];
+[scene2][done]overlay=x=900:y='225+8*sin(t*2)':enable='between(t\,8\,12)'[base];
+[base]
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='Remontteenus.ee':fontcolor=#1F4E79:fontsize=32:x=68:y=52,
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='Nii lihtne see on':fontcolor=#52657A:fontsize=22:x=70:y=99,
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='1. Helista või':fontcolor=#0F1B2D:fontsize=66:x=70:y=238:enable='between(t\,0\,3.9)',
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='saada päring':fontcolor=#E8600A:fontsize=66:x=70:y=326:enable='between(t\,0.25\,3.9)',
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='Räägi lühidalt, mis vajab tegemist.':fontcolor=#52657A:fontsize=29:x=72:y=440:enable='between(t\,0.6\,3.9)',
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='2. Remondiauto':fontcolor=#0F1B2D:fontsize=65:x=70:y=205:enable='between(t\,4\,7.9)',
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='tuleb kohale':fontcolor=#1F4E79:fontsize=65:x=70:y=290:enable='between(t\,4.2\,7.9)',
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='Lepime enne aja kokku.':fontcolor=#52657A:fontsize=29:x=72:y=410:enable='between(t\,4.55\,7.9)',
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='3. Teeme töö':fontcolor=#0F1B2D:fontsize=68:x=70:y=238:enable='between(t\,8\,12)',
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='korralikult valmis':fontcolor=#1E8E3E:fontsize=64:x=70:y=328:enable='between(t\,8.2\,12)',
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf:text='Töö hind sõltub konkreetsest tööst.':fontcolor=#52657A:fontsize=29:x=72:y=444:enable='between(t\,8.55\,12)',
+drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text='502 9187':fontcolor=#1E8E3E:fontsize=42:x=70:y=600,
+fade=t=in:st=0:d=0.3,
+fade=t=out:st=11.7:d=0.3[out]

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1f4e79">
-  <meta name="description" content="Tilkuv kraan, riiul seinale või veeavarii? Pisiremont 45 €/h, väljakutsetasu 0 €. Helista 502 9187 — vastame tunni jooksul.">
+  <meta name="description" content="Tilkuv kraan, riiul seinale või veeavarii? Pisiremont Tallinnas ja Harjumaal. Helista 502 9187 või saada kiire päring.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="et_EE">
   <meta property="og:title" content="Pisiremont Tallinnas ja Harjumaal | Remontteenus.ee">
@@ -24,8 +24,7 @@
     "email": "info@remontteenus.ee",
     "description": "Pisiremont ja kiire koduabi Tallinnas ja Harjumaal.",
     "areaServed": ["Tallinn", "Harjumaa"],
-    "openingHours": "Mo-Fr 08:00-18:00",
-    "priceRange": "€€"
+    "openingHours": "Mo-Fr 08:00-18:00"
   }
   </script>
   <style>
@@ -321,24 +320,21 @@
     .services-callout { margin: 30px 0 0; font-size: 1.06rem; font-weight: 850; }
     .services-callout a { color: var(--blue); }
 
-    .price-layout { display: grid; grid-template-columns: .78fr 1.22fr; gap: clamp(32px, 7vw, 80px); align-items: start; }
-    .price-highlight { position: sticky; top: 110px; border-radius: 28px; background: var(--blue); color: #fff; padding: 36px; box-shadow: var(--shadow); }
-    .price-highlight .eyebrow { color: #ffd2b7; }
-    .price-highlight h2 { color: #fff; }
-    .price-highlight p { color: rgba(255, 255, 255, .8); }
-    .price-main { display: flex; align-items: baseline; gap: 9px; margin: 24px 0 8px; }
-    .price-main strong { font-size: clamp(3.2rem, 7vw, 5.4rem); line-height: 1; letter-spacing: -.06em; }
-    .price-main span { font-weight: 800; }
-    .price-list { margin: 0; border-top: 1px solid var(--line); }
-    .price-row { display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); }
-    .price-row dt { color: var(--muted); }
-    .price-row dd { margin: 0; color: var(--ink); font-weight: 850; text-align: right; }
-    .price-note { margin-top: 24px; color: var(--muted); font-size: .9rem; }
-
     .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: steps; }
     .step { counter-increment: steps; border-radius: 22px; background: #fff; padding: 30px; box-shadow: 0 12px 36px rgba(15, 27, 45, .06); }
     .step::before { content: counter(steps, decimal-leading-zero); display: block; margin-bottom: 42px; color: var(--orange); font-size: 1.05rem; font-weight: 900; letter-spacing: .08em; }
     .step p { margin-bottom: 0; color: var(--muted); }
+    .process-video {
+      width: min(100%, 860px);
+      margin: 48px auto 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .process-video video { width: 100%; aspect-ratio: 16 / 9; display: block; background: var(--mist); object-fit: cover; }
+    .process-video figcaption { padding: 16px 20px; color: var(--muted); font-size: .88rem; text-align: center; }
 
     .business-card { display: grid; grid-template-columns: 1.1fr .9fr; overflow: hidden; border-radius: 34px; background: var(--blue); color: #fff; box-shadow: var(--shadow); }
     .business-copy { padding: clamp(32px, 6vw, 70px); }
@@ -407,7 +403,7 @@
     .reveal.is-visible { opacity: 1; transform: none; }
 
     @media (max-width: 960px) {
-      .hero-grid, .price-layout, .proof-grid { grid-template-columns: 1fr; }
+      .hero-grid, .proof-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 64px; }
       .hero-copy { max-width: 780px; }
       .hero-art { min-height: 400px; }
@@ -418,7 +414,6 @@
       .trust-item:nth-child(2) { border-right: 0; }
       .trust-item:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .price-highlight { position: static; }
       .business-card, .contact-card { grid-template-columns: 1fr; }
       .business-visual { min-height: 340px; }
       .steps { grid-template-columns: 1fr; }
@@ -462,9 +457,6 @@
       .form-footer .btn { width: 100%; }
       .services-grid { grid-template-columns: 1fr; }
       .service-card { min-height: 0; }
-      .price-highlight { padding: 28px; }
-      .price-row { grid-template-columns: 1fr; gap: 6px; }
-      .price-row dd { text-align: left; }
       .step { grid-template-columns: 56px 1fr; padding: 24px; }
       .business-copy, .contact-main, .contact-meta { padding: 30px 24px; }
       .business-visual { min-height: 290px; }
@@ -493,7 +485,7 @@
       </a>
       <div class="header-actions">
         <a class="quiet-link" href="#teenused">Teenused</a>
-        <a class="quiet-link" href="#hinnad">Hinnad</a>
+        <a class="quiet-link" href="#kuidas">Kuidas tellida</a>
         <a class="btn btn-green" href="tel:+3725029187" aria-label="Helista numbrile 5029187">📞 <span>502&nbsp;9187</span></a>
       </div>
     </div>
@@ -518,7 +510,7 @@
           <svg class="tool-mark" viewBox="0 0 320 320" role="img">
             <path fill="currentColor" d="M230 42a76 76 0 0 0-88 98L63 219a28 28 0 0 0 39 39l79-79a76 76 0 0 0 98-88l-48 48-46-12-12-46 57-39Zm-144 197a12 12 0 1 1 0-24 12 12 0 0 1 0 24Z"/>
           </svg>
-          <div class="art-badge"><span>Üks kõne</span>Räägi mure ära. Lepime aja ja hinna.</div>
+          <div class="art-badge"><span>Üks kõne</span>Räägi mure ära. Lepime sobiva aja kokku.</div>
         </div>
       </div>
     </section>
@@ -526,7 +518,7 @@
     <section class="trust-strip" aria-label="Teenuse eelised">
       <div class="wrap trust-grid">
         <div class="trust-item"><strong>15+</strong><span>aastat kogemust</span></div>
-        <div class="trust-item"><strong>0 €</strong><span>väljakutsetasu</span></div>
+        <div class="trust-item"><strong>Kokkulepe</strong><span>enne töö alustamist</span></div>
         <div class="trust-item"><strong>1 h</strong><span>vastame tööajal</span></div>
         <div class="trust-item"><strong>Garantii</strong><span>tehtud töödele</span></div>
       </div>
@@ -668,43 +660,23 @@
       </div>
     </section>
 
-    <section class="section" id="hinnad" aria-labelledby="prices-title">
-      <div class="wrap price-layout">
-        <div class="price-highlight reveal">
-          <p class="eyebrow">Selge hinnakiri</p>
-          <h2 id="prices-title">Üllatusi ei tule.</h2>
-          <p>Tunnitasu tööpäeval kell 8–18</p>
-          <div class="price-main"><strong>45 €</strong><span>/ tund</span></div>
-          <p>Väljakutsetasu Tallinnas ja lähiümbruses 0 €.</p>
-          <a class="btn btn-orange" href="tel:+3725029187">Küsi&nbsp;hinnangut&nbsp;—&nbsp;502&nbsp;9187</a>
-        </div>
-        <div class="reveal">
-          <dl class="price-list">
-            <div class="price-row"><dt>Tunnitasu E–R 8–18</dt><dd>45 €/h</dd></div>
-            <div class="price-row"><dt>Hädaabi õhtul, öösel ja nädalavahetusel</dt><dd>65 €/h</dd></div>
-            <div class="price-row"><dt>Miinimumarvestus</dt><dd>1 tund, edasi 15 min kaupa</dd></div>
-            <div class="price-row"><dt>Väljakutsetasu</dt><dd>0 €</dd></div>
-            <div class="price-row"><dt>Transport Tallinnas ja lähiümbruses</dt><dd>0 €; kaugemal 0,50 €/km</dd></div>
-            <div class="price-row"><dt>Poolpäev, 4 tundi — mitu tööd korraga</dt><dd>160 €</dd></div>
-            <div class="price-row"><dt>Ühistu või maja kuupakett</dt><dd>alates 149 €/kuu</dd></div>
-            <div class="price-row"><dt>Materjalid</dt><dd>ostuhind kviitungi alusel</dd></div>
-          </dl>
-          <p class="price-note">Arvestus algab meistri saabumisest. Tühistamine on tasuta kuni 2 tundi enne.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-soft" aria-labelledby="steps-title">
+    <section class="section section-soft" id="kuidas" aria-labelledby="steps-title">
       <div class="wrap">
         <div class="section-head reveal">
           <p class="eyebrow">Lihtne algusest lõpuni</p>
           <h2 id="steps-title">Kuidas käib</h2>
         </div>
         <div class="steps">
-          <article class="step reveal"><div><h3>Helista või saada päring</h3><p>Ütle, mis mureks. Vastame tööajal tunni jooksul.</p></div></article>
-          <article class="step reveal"><div><h3>Lepime aja ja hinna</h3><p>Ütleme kohe tunnihinna ja hinnangulise ajakulu.</p></div></article>
-          <article class="step reveal"><div><h3>Meister tuleb ja teeb korda</h3><p>Maksad ainult tehtud töö eest. Arve ja garantii kaasa.</p></div></article>
+          <article class="step reveal"><div><h3>Helista või saada päring</h3><p>Kirjelda lühidalt, milline töö vajab tegemist.</p></div></article>
+          <article class="step reveal"><div><h3>Remondiauto tuleb kohale</h3><p>Lepime enne sobiva aja kokku.</p></div></article>
+          <article class="step reveal"><div><h3>Teeme töö korralikult valmis</h3><p>Töö hind sõltub konkreetsest tööst ja vajalikest materjalidest.</p></div></article>
         </div>
+        <figure class="process-video reveal">
+          <video muted loop playsinline controls preload="metadata" poster="/kuidas-tellida-poster.webp" aria-label="Video näitab, kuidas tellida Remontteenus.ee teenus">
+            <source src="/kuidas-tellida.mp4" type="video/mp4">
+          </video>
+          <figcaption>12-sekundiline ülevaade: päring, remondiauto saabumine ja töö teostamine.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -714,7 +686,7 @@
           <div class="business-copy">
             <p class="eyebrow">Püsiv abi</p>
             <h2 id="business-title">Korteriühistule, majaomanikule ja ettevõttele</h2>
-            <p>Pakume püsihooldust: pisiremont, santehnika ja elektri väiketööd ühe lepinguga. Kuupakett alates 149 €/kuu — 4 tundi töid, eelisjärjekord ja kokkulepitud reageerimisaeg.</p>
+            <p>Pakume püsihooldust: pisiremont, santehnika ja elektri väiketööd ühe lepinguga. Tööde maht, reageerimisaeg ja hind lepitakse kokku vastavalt hoone vajadustele.</p>
             <p>Teostame ka ehitiste ülevaatusi ja seisukorra hindamisi.</p>
             <a class="btn btn-orange" href="tel:+3725029187">Küsi&nbsp;pakkumist&nbsp;—&nbsp;502&nbsp;9187</a>
           </div>
@@ -883,6 +855,11 @@
 
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const revealItems = document.querySelectorAll(".reveal");
+      const processVideo = document.querySelector(".process-video video");
+      if (reducedMotion && processVideo) {
+        processVideo.pause();
+        processVideo.removeAttribute("autoplay");
+      }
       if (reducedMotion || !("IntersectionObserver" in window)) {
         revealItems.forEach((item) => item.classList.add("is-visible"));
       } else {

@@ -1,5 +1,6 @@
 const MAX_REQUEST_BYTES = 5 * 1024 * 1024;
 const MAX_ATTACHMENT_BYTES = 4 * 1024 * 1024;
+const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 const ALLOWED_IMAGE_TYPES = new Set([
   "image/jpeg",
   "image/png",
@@ -37,6 +38,59 @@ const escapeHtml = (value) =>
   });
 
 const phoneLooksValid = (value) => /^[+\d][\d\s()-]{5,24}$/.test(value);
+
+async function checkRateLimit(request, env) {
+  if (!env.CONTACT_RATE_LIMITER || typeof env.CONTACT_RATE_LIMITER.limit !== "function") return null;
+
+  const clientIp = clean(request.headers.get("cf-connecting-ip") || "unknown", 80);
+  const { success } = await env.CONTACT_RATE_LIMITER.limit({ key: `contact:${clientIp}` });
+  if (success) return null;
+
+  return json(
+    { ok: false, message: "Liiga palju päringuid. Palun oota minut ja proovi uuesti või helista 502 9187." },
+    429,
+  );
+}
+
+async function verifyTurnstile(formData, request, env) {
+  if (!env.TURNSTILE_SECRET) {
+    return { error: "Robotikontroll ei ole veel seadistatud. Palun helista 502 9187.", status: 503 };
+  }
+
+  const token = getField(formData, "cf-turnstile-response", 2048);
+  if (!token) {
+    return { error: "Palun kinnita robotikontroll ja proovi uuesti.", status: 400 };
+  }
+
+  const body = new URLSearchParams({ secret: env.TURNSTILE_SECRET, response: token });
+  const remoteIp = clean(request.headers.get("cf-connecting-ip") || "", 80);
+  if (remoteIp) body.set("remoteip", remoteIp);
+
+  const verifyFetch = typeof env.TURNSTILE_VERIFY_FETCH === "function" ? env.TURNSTILE_VERIFY_FETCH : fetch;
+  let result;
+  try {
+    const response = await verifyFetch(TURNSTILE_VERIFY_URL, {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body,
+    });
+    if (!response.ok) throw new Error(`Turnstile vastas ${response.status}`);
+    result = await response.json();
+  } catch (error) {
+    console.error("Turnstile verification failed", error);
+    return {
+      error: "Robotikontroll ei ole hetkel saadaval. Palun proovi uuesti või helista 502 9187.",
+      status: 503,
+    };
+  }
+
+  const expectedHostname = new URL(request.url).hostname;
+  if (!result.success || result.action !== "contact" || result.hostname !== expectedHostname) {
+    return { error: "Robotikontroll ebaõnnestus. Palun proovi uuesti.", status: 400 };
+  }
+
+  return { success: true };
+}
 
 function getField(formData, name, maxLength = 500) {
   const value = formData.get(name);
@@ -138,6 +192,9 @@ async function handleContact(request, env) {
     return json({ ok: false, message: "Vigane päringu vorming." }, 415);
   }
 
+  const rateLimitResponse = await checkRateLimit(request, env);
+  if (rateLimitResponse) return rateLimitResponse;
+
   let formData;
   try {
     formData = await request.formData();
@@ -156,6 +213,9 @@ async function handleContact(request, env) {
 
   const validated = validateSubmission(formData);
   if (validated.error) return json({ ok: false, message: validated.error }, 400);
+
+  const turnstile = await verifyTurnstile(formData, request, env);
+  if (turnstile.error) return json({ ok: false, message: turnstile.error }, turnstile.status);
 
   const photo = formData.get("photo");
   const attachments = [];
@@ -212,4 +272,4 @@ export default {
   },
 };
 
-export { buildEmail, clean, validateSubmission };
+export { buildEmail, clean, validateSubmission, verifyTurnstile };

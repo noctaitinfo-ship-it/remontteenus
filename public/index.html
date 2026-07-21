@@ -14,6 +14,7 @@
   <link rel="canonical" href="https://remontteenus.ee/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23E8600A'/%3E%3Cpath d='M42 13a15 15 0 0 0-17 19L11 46a5 5 0 0 0 7 7l14-14a15 15 0 0 0 19-17l-9 9-9-2-2-9 11-7Z' fill='white'/%3E%3C/svg%3E">
   <title>Pisiremont Tallinnas ja Harjumaal | Remontteenus.ee</title>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -76,6 +77,7 @@
     button, a { -webkit-tap-highlight-color: transparent; }
     :focus-visible { outline: 4px solid rgba(232, 96, 10, .32); outline-offset: 3px; }
     [hidden] { display: none !important; }
+    .turnstile-wrap { display: flex; min-height: 70px; align-items: center; }
 
     .skip-link {
       position: fixed;
@@ -613,6 +615,15 @@
               </div>
               <input id="started-at" name="startedAt" type="hidden">
 
+              <div class="field-full turnstile-wrap">
+                <div class="cf-turnstile"
+                  data-sitekey="0x4AAAAAAD6qXIy3gfoiQQqF"
+                  data-action="contact"
+                  data-language="et"
+                  data-theme="light"
+                  data-appearance="interaction-only"></div>
+              </div>
+
               <div class="field-full">
                 <p class="privacy-note">Saates annad loa kasutada sisestatud andmeid päringule vastamiseks. <button type="button" data-open-privacy>Privaatsusteade</button></p>
               </div>
@@ -804,9 +815,11 @@
           form.reset();
           updatePayerFields();
           startedAt.value = String(Date.now());
+          if (window.turnstile) window.turnstile.reset();
           status.classList.add("success");
           status.textContent = "Aitäh! Sinu sõnum on teel. Helistame tagasi esimesel võimalusel. Kiire avarii korral helista kohe 502 9187.";
         } catch (error) {
+          if (window.turnstile) window.turnstile.reset();
           status.classList.add("error");
           status.textContent = error.message || "Saatmine ei õnnestunud. Palun helista 502 9187.";
         } finally {

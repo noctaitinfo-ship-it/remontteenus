@@ -11,7 +11,7 @@
   "send_email": [
     {
       "name": "EMAIL",
-      "destination_address": "inforemontteenus@gmail.com",
+      "destination_address": "info@remontteenus.ee",
       "allowed_sender_addresses": ["info@remontteenus.ee"]
     }
   ]

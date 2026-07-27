@@ -14,5 +14,15 @@
       "destination_address": "info@remontteenus.ee",
       "allowed_sender_addresses": ["info@remontteenus.ee"]
     }
+  ],
+  "ratelimits": [
+    {
+      "name": "CONTACT_RATE_LIMITER",
+      "namespace_id": "38421",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    }
   ]
 }

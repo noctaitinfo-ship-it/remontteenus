@@ -35,3 +35,4 @@ npm test
 - päris enne/pärast fotod ja Google'i arvustused saab hiljem lisada, kui need on olemas.
 
 Kuni need punktid on kinnitamata, hoia muudatus eraldi harus või eelvaates ja ära ühenda tootmisharusse.
+

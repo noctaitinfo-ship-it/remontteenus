@@ -181,7 +181,7 @@ async function handleContact(request, env) {
   const email = buildEmail(validated.fields, request);
   try {
     await env.EMAIL.send({
-      to: "inforemontteenus@gmail.com",
+      to: "info@remontteenus.ee",
       from: { email: "info@remontteenus.ee", name: "Remontteenus.ee veeb" },
       replyTo: "info@remontteenus.ee",
       subject: email.subject,

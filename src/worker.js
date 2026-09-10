@@ -37,6 +37,7 @@ const escapeHtml = (value) =>
   });
 
 const phoneLooksValid = (value) => /^[+\d][\d\s()-]{5,24}$/.test(value);
+const emailLooksValid = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 function getField(formData, name, maxLength = 500) {
   const value = formData.get(name);
@@ -50,6 +51,7 @@ function validateSubmission(formData) {
     location: getField(formData, "location", 160),
     name: getField(formData, "name", 120),
     phone: getField(formData, "phone", 40),
+    email: getField(formData, "email", 200),
     payer: getField(formData, "payer", 40),
     personalCode: getField(formData, "personalCode", 30),
     organisationName: getField(formData, "organisationName", 180),
@@ -70,6 +72,9 @@ function validateSubmission(formData) {
   }
   if (!phoneLooksValid(fields.phone)) {
     return { error: "Palun kontrolli telefoninumbrit." };
+  }
+  if (fields.email && !emailLooksValid(fields.email)) {
+    return { error: "Palun kontrolli e-posti aadressi." };
   }
   if (fields.payer === "Mina ise" && !fields.personalCode) {
     return { error: "Palun lisa arve ja lepingu jaoks isikukood." };
@@ -108,6 +113,7 @@ function buildEmail(fields, request) {
     ["Asukoht", fields.location],
     ["Nimi", fields.name],
     ["Telefon", fields.phone],
+    ...(fields.email ? [["E-post", fields.email]] : []),
     ["Maksja", fields.payer],
     ...payerDetails,
   ];
@@ -179,11 +185,15 @@ async function handleContact(request, env) {
   }
 
   const email = buildEmail(validated.fields, request);
+  const customerEmail = validated.fields.email;
+  const replyTo = customerEmail
+    ? (validated.fields.name ? { email: customerEmail, name: validated.fields.name } : customerEmail)
+    : "info@remontteenus.ee";
   try {
     await env.EMAIL.send({
       to: "info@remontteenus.ee",
       from: { email: "info@remontteenus.ee", name: "Remontteenus.ee veeb" },
-      replyTo: "info@remontteenus.ee",
+      replyTo,
       subject: email.subject,
       text: email.text,
       html: email.html,

@@ -36,3 +36,4 @@ npm test
 
 Kuni need punktid on kinnitamata, hoia muudatus eraldi harus või eelvaates ja ära ühenda tootmisharusse.
 
+ 
